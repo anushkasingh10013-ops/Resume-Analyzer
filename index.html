@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analyzer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Resume Analyzer</h1>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#analyzer">Analyze</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Analyze Your Resume with AI</h2>
+    <p>
+        Check your resume score, skills, ATS compatibility and job match.
+    </p>
+</section>
+
+<div class="container" id="analyzer">
+
+    <div class="analyzer">
+
+        <div class="upload-box">
+
+            <h3>Upload Your Resume</h3>
+
+            <p>Upload your PDF or DOCX resume</p>
+
+            <label for="resumeFile" class="upload-label">
+                Choose Resume
+            </label>
+
+            <input
+                type="file"
+                id="resumeFile"
+                accept=".pdf,.doc,.docx"
+            >
+
+            <div class="file-name" id="fileName"></div>
+
+        </div>
+
+        <div class="job-section">
+
+            <label for="jobDescription">
+                Paste Job Description
+            </label>
+
+            <textarea
+                id="jobDescription"
+                placeholder="Paste the job description here..."
+            ></textarea>
+
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeResume()">
+            Analyze Resume
+        </button>
+
+        <!-- RESULTS -->
+
+        <div class="results" id="results">
+
+            <h2>Analysis Results</h2>
+
+            <div class="score-card">
+
+                <p>Your Resume Score</p>
+
+                <div class="score">82%</div>
+
+                <p>Good Resume — Some improvements recommended</p>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>✅ Matching Skills</h3>
+
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Git</li>
+                    </ul>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>⚠️ Missing Skills</h3>
+
+                    <ul>
+                        <li>Node.js</li>
+                        <li>MongoDB</li>
+                        <li>REST API</li>
+                    </ul>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>📊 ATS Analysis</h3>
+
+                    <ul>
+                        <li>Good formatting</li>
+                        <li>Clear headings</li>
+                        <li>Readable structure</li>
+                        <li>Keywords can improve</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="suggestions">
+
+                <h3>💡 Suggestions</h3>
+
+                <ul>
+                    <li>Add more keywords from the job description.</li>
+                    <li>Highlight your technical projects.</li>
+                    <li>Add measurable achievements.</li>
+                    <li>Include missing technical skills if applicable.</li>
+                    <li>Keep your resume concise and ATS-friendly.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer id="about">
+    <p>© 2026 Resume Analyzer | Built with HTML, CSS & JavaScript</p>
+</footer>
+
+
+<script>
+
+    // Show selected file name
+    document.getElementById("resumeFile").addEventListener("change", function() {
+
+        const file = this.files[0];
+
+        if (file) {
+            document.getElementById("fileName").innerText =
+                "Selected: " + file.name;
+        }
+
+    });
+
+
+    // Analyze Resume
+    function analyzeResume() {
+
+        const file = document.getElementById("resumeFile").files[0];
+
+        const jobDescription =
+            document.getElementById("jobDescription").value;
+
+        if (!file) {
+            alert("Please upload your resume first.");
+            return;
+        }
+
+        if (jobDescription.trim() === "") {
+            alert("Please enter the job description.");
+            return;
+        }
+
+        // Display results
+        document.getElementById("results").style.display = "block";
+
+        // Scroll to results
+        document.getElementById("results").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
